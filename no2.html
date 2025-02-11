@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard with GIF and Text</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flashcard {
+            width: 500px;
+            height: 500px;
+            perspective: 1000px; /* Perspective for 3D effect */
+            cursor: pointer; /* Makes it clickable */
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateY(0);
+            transition: transform 1s;
+            position: relative;
+        }
+
+        .flashcard:hover .card {
+            transform: rotateY(180deg); /* Flip when hovered */
+        }
+
+        .card-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            overflow: hidden; /* Ensures the GIF fits perfectly */
+            position: relative;
+        }
+
+        .front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Makes the GIF fill the card */
+            border-radius: 10px;
+        }
+
+        /* Rectangle in the top-left corner with text */
+        .top-left-rectangle {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .back {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: rotateY(180deg);
+            color: #333;
+            font-size: 18px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Styling for the back content */
+        .back p {
+            margin: 10px 0;
+        }
+
+        /* Text styling for the back content */
+        .back p:first-child {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard" onclick="moveCard()">
+        <div class="card">
+            <!-- Front of the card -->
+            <div class="card-side front">
+                <div class="top-left-rectangle">
+                    Click on video to see
+                </div>
+                <img src="C:\Users\SECURT\Desktop\zero-two-hiro.gif" alt="Zero Two Hiro GIF">
+            </div>
+            <!-- Back of the card -->
+            <div class="card-side back">
+                <p>janaaa! tum bhi sochti ho gi ya larka kya ha ya muja janta ha phr bhi mujsa itna piyar q krta ha?</p>
+                <p> </p> <!-- Empty line for spacing -->
+                <p>jan e jigar ma is liye krta hun q ma tumhe wo piyar dana chta hu jo tumhe tumhara past ma nahi mila muja pata ha wo us ko fulfil nahi kr skta lakin ma apni puri khoshih krun ga jana tumhe khush krna ki or us piyar ko dana ki🫀🥺</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function moveCard() {
+            const card = document.querySelector('.card');
+            // Small move effect on click
+            card.style.transform = 'rotateY(180deg) rotate(10deg)';
+            setTimeout(() => {
+                card.style.transform = 'rotateY(180deg)'; // Reset after animation
+            }, 500);
+        }
+    </script>
+</body>
+</html>
